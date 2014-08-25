@@ -1,46 +1,91 @@
 # Airy
 
-An open source gesture library for Android&trade;.
+An open source gesture library for Android™.
 
 ## Usage
 
 ```
-Activity mActivity = this;
+View mView = findViewById(R.id.view);
+View mAnotherView = findViewById(R.id.anotherView);
 
-RelativeLayout mRelativeLayout = new RelativeLayout();
-Airy mAiry = new Airy(mActivity) {
-	@Override
-	public void onGesture(View pView, int pGestureId) {
-		switch (pGestureId) {
-			case Airy.TAP:
-				break;
-			case Airy.SWIPE_UP:
-				break;
-			case Airy.SWIPE_DOWN:
-				break;
-			case Airy.SWIPE_LEFT:
-				break;
-			case Airy.SWIPE_RIGHT:
-				break;
-			case Airy.TWO_FINGER_TAP:
-				break;
-			case Airy.TWO_FINGER_SWIPE_UP:
-				break;
-			case Airy.TWO_FINGER_SWIPE_DOWN:
-				break;
-			case Airy.TWO_FINGER_SWIPE_LEFT:
-				break;
-			case Airy.TWO_FINGER_SWIPE_RIGHT:
-				break;
-			case Airy.TWO_FINGER_PINCH_IN:
-				break;
-			case Airy.TWO_FINGER_PINCH_OUT:
-				break;
-		}
-	}
+// this has to be an instance of Activity.
+Airy mAiry = new Airy(this) {
+    @Override
+    public void onGesture(View pView, int pGestureId) {
+        if (pView == mView) {
+            switch (pGestureId) {
+                case Airy.INVALID_GESTURE:
+                    break;
+                case Airy.TAP:
+                    break;
+                case Airy.SWIPE_UP:
+                    break;
+                case Airy.SWIPE_DOWN:
+                    break;
+                case Airy.SWIPE_LEFT:
+                    break;
+                case Airy.SWIPE_RIGHT:
+                    break;
+                case Airy.TWO_FINGER_TAP:
+                    break;
+                case Airy.TWO_FINGER_SWIPE_UP:
+                    break;
+                case Airy.TWO_FINGER_SWIPE_DOWN:
+                    break;
+                case Airy.TWO_FINGER_SWIPE_LEFT:
+                    break;
+                case Airy.TWO_FINGER_SWIPE_RIGHT:
+                    break;
+                case Airy.TWO_FINGER_PINCH_IN:
+                    break;
+                case Airy.TWO_FINGER_PINCH_OUT:
+                    break;
+            }
+        } else if (pView == mAnotherView) {
+            switch (pGestureId) {
+                case Airy.INVALID_GESTURE:
+                    break;
+                case Airy.TAP:
+                    break;
+                case Airy.SWIPE_UP:
+                    break;
+                case Airy.SWIPE_DOWN:
+                    break;
+                case Airy.SWIPE_LEFT:
+                    break;
+                case Airy.SWIPE_RIGHT:
+                    break;
+                case Airy.TWO_FINGER_TAP:
+                    break;
+                case Airy.TWO_FINGER_SWIPE_UP:
+                    break;
+                case Airy.TWO_FINGER_SWIPE_DOWN:
+                    break;
+                case Airy.TWO_FINGER_SWIPE_LEFT:
+                    break;
+                case Airy.TWO_FINGER_SWIPE_RIGHT:
+                    break;
+                case Airy.TWO_FINGER_PINCH_IN:
+                    break;
+                case Airy.TWO_FINGER_PINCH_OUT:
+                    break;
+            }
+        }
+    }
 };
 
-mRelativeLayout.setOnTouchListener(mAiry);
+mView.setOnTouchListener(mAiry);
+mAnotherView.setOnTouchListener(mAnotherAiry);
+```
+
+### Alternate Constructor
+
+```
+DisplayMetrics mDisplayMetrics = new DisplayMetrics();
+getWindowManager().getDefaultDisplay().getMetrics(mDisplayMetrics);
+float mDisplayDensity = mDisplayMetrics.density;
+
+Airy mAiry = new Airy(mDisplayDensity);
 ```
 
 ## Copyright Information

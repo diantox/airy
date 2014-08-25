@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                        http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.mirasmithy.airy</groupId>
+    <artifactId>airy</artifactId>
+    <version>1.0.1</version>
+    <dependencies>
+        <dependency>
+            <groupId>com.google.android</groupId>
+            <artifactId>android</artifactId>
+            <version>4.1.1.4</version>
+        </dependency>
+    </dependencies>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+            </plugin>
+        </plugins>
+    </build>
+
+    <name>Airy</name>
+    <description>An open source gesture library for Android™.</description>
+    <url>https://github.com/mirasmithy/airy</url>
+    <inceptionYear>2014</inceptionYear>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <id>mirasmithy</id>
+            <name>Miras Absar</name>
+            <email>miras.absar@gmail.com</email>
+            <url>http://mirasmithy.github.io</url>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <timezone>-7</timezone>
+        </developer>
+    </developers>
+    <contributors>
+        <contributor>
+            <name>Tadeáš Kříž</name>
+            <roles>
+                <role>contributor</role>
+            </roles>
+        </contributor>
+    </contributors>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/mirasmithy/airy/issues</url>
+    </issueManagement>
+    <scm>
+        <connection>scm:git:https://github.com/mirasmithy/airy.git</connection>
+        <developerConnection>scm:git:https://github.com/mirasmithy/airy.git</developerConnection>
+        <url>https://github.com/mirasmithy/airy</url>
+    </scm>
+</project>

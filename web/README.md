@@ -11,6 +11,8 @@ var mAnotherElement = document.getElementById("anotherElement");
 var mOnGesture = function(pElement, pGestureId) {
     if (pElement == mElement) {
         switch (pGestureId) {
+            case Airy.prototype.INVALID_GESTURE:
+                break;
             case Airy.prototype.TAP:
                 break;
             case Airy.prototype.SWIPE_UP:
@@ -38,6 +40,8 @@ var mOnGesture = function(pElement, pGestureId) {
         }
     } else if (pElement == mAnotherElement) {
         switch (pGestureId) {
+            case Airy.prototype.INVALID_GESTURE:
+                break;
             case Airy.prototype.TAP:
                 break;
             case Airy.prototype.SWIPE_UP:
