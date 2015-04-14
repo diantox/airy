@@ -57,7 +57,7 @@ public class Airy implements View.OnTouchListener {
         mMovementLimitPx = MOVEMENT_LIMIT_DP * mDisplayMetrics.density;
     }
 
-    public int getGestureId() {
+    private int getGestureId() {
         int mTotalPointerCount = mPointers.size();
 
         if (mTotalPointerCount == 1) {
