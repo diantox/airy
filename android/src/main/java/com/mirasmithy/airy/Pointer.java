@@ -18,6 +18,9 @@
 
 package com.mirasmithy.airy;
 
+/**
+ * A Pointer represents a point of contact between a user and a touch screen.
+ */
 public class Pointer {
 
     private int mId;
@@ -35,6 +38,16 @@ public class Pointer {
     private float mUpXLowerLimit;
     private float mUpYLowerLimit;
 
+    /**
+     * Creates a new Pointer.
+     *
+     * @param pId The Pointer's ID.
+     * @param pDownTime The time (in milliseconds) when the Pointer went down.
+     * @param pDownX The X coordinate (in pixels) where the Pointer went down.
+     * @param pDownY The Y coordinate (in pixels) where the Pointer went down.
+     * @param pMovementLimitPx The distance (in pixels) the Pointer has to move to
+     *                         trigger a gesture.
+     */
     public Pointer(int pId,
                    long pDownTime, float pDownX, float pDownY,
                    float pMovementLimitPx) {
@@ -51,42 +64,94 @@ public class Pointer {
         mUpYLowerLimit = mDownY - pMovementLimitPx;
     }
 
+    /**
+     * Sets the time (in milliseconds) when the Pointer went up.
+     *
+     * @param pUpTime The time (in milliseconds) when the Pointer went up.
+     */
     public void setUpTime(long pUpTime) {
         mUpTime = pUpTime;
     }
 
+    /**
+     * Sets the X coordinate (in pixels) where the Pointer went up.
+     *
+     * @param pUpX The X coordinate (in pixels) where the Pointer went up.
+     */
     public void setUpX(float pUpX) {
         mUpX = pUpX;
     }
 
+    /**
+     * Sets the Y coordinate (in pixels) where the Pointer went up.
+     *
+     * @param pUpY The Y coordinate (in pixels) where the Pointer went up.
+     */
     public void setUpY(float pUpY) {
         mUpY = pUpY;
     }
 
+    /**
+     * Returns the Pointer's ID.
+     *
+     * @return The Pointer's ID.
+     */
     public int getId() {
         return mId;
     }
 
+    /**
+     * Returns the X coordinate (in pixels) where the Pointer went down.
+     *
+     * @return The X coordinate (in pixels) where the Pointer went down.
+     */
     public float getDownX() {
         return mDownX;
     }
 
+    /**
+     * Returns the Y coordinate (in pixels) where the Pointer went down.
+     *
+     * @return The Y coordinate (in pixels) where the Pointer went down.
+     */
     public float getDownY() {
         return mDownY;
     }
 
+    /**
+     * Returns the X coordinate (in pixels) where the Pointer went up.
+     *
+     * @return The X coordinate (in pixels) where the Pointer went up.
+     */
     public float getUpX() {
         return mUpX;
     }
 
+    /**
+     * Returns the Y coordinate (in pixels) where the Pointer went up.
+     *
+     * @return The Y coordinate (in pixels) where the Pointer went up.
+     */
     public float getUpY() {
         return mUpY;
     }
 
+    /**
+     * Returns whether the Pointer was down inside a given time limit.
+     *
+     * @param pTimeLimit The time (in milliseconds) the Pointer has to perform a
+     *                   gesture.
+     * @return Whether the Pointer was down inside a given time limit.
+     */
     public boolean downInsideTimeLimit(int pTimeLimit) {
         return (mUpTime - mDownTime) <= pTimeLimit;
     }
 
+    /**
+     * Returns whether the Pointer tapped.
+     *
+     * @return Whether the Pointer tapped.
+     */
     public boolean tapped() {
         return mUpX < mUpXUpperLimit &&
                 mUpY < mUpYUpperLimit &&
@@ -94,24 +159,44 @@ public class Pointer {
                 mUpY > mUpYLowerLimit;
     }
 
+    /**
+     * Returns whether the Pointer swiped up.
+     *
+     * @return Whether the Pointer swiped up.
+     */
     public boolean swipedUp() {
         return mUpX < mUpXUpperLimit &&
                 mUpX > mUpXLowerLimit &&
                 mUpY <= mUpYLowerLimit;
     }
 
+    /**
+     * Returns whether the Pointer swiped down.
+     *
+     * @return Whether the Pointer swiped down.
+     */
     public boolean swipedDown() {
         return mUpX < mUpXUpperLimit &&
                 mUpY >= mUpYUpperLimit &&
                 mUpX > mUpXLowerLimit;
     }
 
+    /**
+     * Returns whether the Pointer swiped left.
+     *
+     * @return Whether the Pointer swiped left.
+     */
     public boolean swipedLeft() {
         return mUpY < mUpYUpperLimit &&
                 mUpX <= mUpXLowerLimit &&
                 mUpY > mUpYLowerLimit;
     }
 
+    /**
+     * Returns whether the Pointer swiped right.
+     *
+     * @return Whether the Pointer swiped right.
+     */
     public boolean swipedRight() {
         return mUpX >= mUpXUpperLimit &&
                 mUpY < mUpYUpperLimit &&
@@ -124,12 +209,28 @@ public class Pointer {
         return Math.sqrt(Math.pow(pXI - pXII, 2) + Math.pow(pYI - pYII, 2));
     }
 
+    /**
+     * Returns whether the Pointer pinched in with another Pointer.
+     *
+     * @param pPointer Another Pointer.
+     * @param pMovementLimitPx The distance (in pixels) both Pointers have to move to
+     *                         trigger a gesture.
+     * @return Whether the Pointer pinched in with another Pointer.
+     */
     public boolean pinchedIn(Pointer pPointer, float pMovementLimitPx) {
         return (distanceFormula(mDownX, mDownY, pPointer.getDownX(), pPointer.getDownY()) +
                 pMovementLimitPx) <=
                 distanceFormula(mUpX, mUpY, pPointer.getUpX(), pPointer.getUpY());
     }
 
+    /**
+     * Returns whether the Pointer pinched out with another Pointer.
+     *
+     * @param pPointer Another Pointer.
+     * @param pMovementLimitPx The distance (in pixels) both Pointers have to move to
+     *                         trigger a gesture.
+     * @return Whether the Pointer pinched out with another Pointer.
+     */
     public boolean pinchedOut(Pointer pPointer, float pMovementLimitPx) {
         return (distanceFormula(mDownX, mDownY, pPointer.getDownX(), pPointer.getDownY()) -
                 pMovementLimitPx) >=

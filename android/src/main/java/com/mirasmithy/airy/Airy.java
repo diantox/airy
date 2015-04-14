@@ -25,31 +25,88 @@ import android.view.View;
 
 import java.util.ArrayList;
 
+/**
+ * An Airy is a gesture listener.
+ */
 public class Airy implements View.OnTouchListener {
 
     private static final int TIME_LIMIT = 300;
     private static final int MOVEMENT_LIMIT_DP = 48;
 
+    /**
+     * The gesture ID for an unknown gesture.
+     */
     public static final int UNKNOWN_GESTURE = 0;
 
+    /**
+     * The gesture ID for a one finger tap.
+     */
     public static final int ONE_FINGER_TAP = 1;
+
+    /**
+     * The gesture ID for a one finger swipe up.
+     */
     public static final int ONE_FINGER_SWIPE_UP = 2;
+
+    /**
+     * The gesture ID for a one finger swipe down.
+     */
     public static final int ONE_FINGER_SWIPE_DOWN = 3;
+
+    /**
+     * The gesture ID for a one finger swipe left.
+     */
     public static final int ONE_FINGER_SWIPE_LEFT = 4;
+
+    /**
+     * The gesture ID for a one finger swipe right.
+     */
     public static final int ONE_FINGER_SWIPE_RIGHT = 5;
 
+    /**
+     * The gesture ID for a two finger tap.
+     */
     public static final int TWO_FINGER_TAP = 6;
+
+    /**
+     * The gesture ID for a two finger swipe up.
+     */
     public static final int TWO_FINGER_SWIPE_UP = 7;
+
+    /**
+     * The gesture ID for a two finger swipe down.
+     */
     public static final int TWO_FINGER_SWIPE_DOWN = 8;
+
+    /**
+     * The gesture ID for a two finger swipe left.
+     */
     public static final int TWO_FINGER_SWIPE_LEFT = 9;
+
+    /**
+     * The gesture ID for a two finger swipe right.
+     */
     public static final int TWO_FINGER_SWIPE_RIGHT = 10;
+
+    /**
+     * The gesture ID for a two finger pinch in.
+     */
     public static final int TWO_FINGER_PINCH_IN = 11;
+
+    /**
+     * The gesture ID for a two finger pinch out.
+     */
     public static final int TWO_FINGER_PINCH_OUT = 12;
 
     private float mMovementLimitPx;
 
     private ArrayList<Pointer> mPointers;
 
+    /**
+     * Creates a new Airy.
+     *
+     * @param pActivity An Activity.
+     */
     public Airy(Activity pActivity) {
         DisplayMetrics mDisplayMetrics = new DisplayMetrics();
         pActivity.getWindowManager().getDefaultDisplay().getMetrics(mDisplayMetrics);
@@ -126,9 +183,22 @@ public class Airy implements View.OnTouchListener {
         }
     }
 
+    /**
+     * The function called on a gesture.
+     *
+     * @param pView The View a gesture was performed on.
+     * @param pGestureId The ID of a performed gesture.
+     */
     public void onGesture(View pView, int pGestureId) {
     }
 
+    /**
+     * The function called on a touch.
+     *
+     * @param pView The View a touch was performed on.
+     * @param pMotionEvent The MotionEvent of a performed touch.
+     * @return true
+     */
     @Override
     public boolean onTouch(View pView, MotionEvent pMotionEvent) {
         int mActionIndex = pMotionEvent.getActionIndex();
