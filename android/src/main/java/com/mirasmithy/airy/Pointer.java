@@ -119,7 +119,7 @@ public class Pointer {
     }
 
     private double distanceFormula(float pXI, float pYI,
-                                  float pXII, float pYII) {
+                                   float pXII, float pYII) {
 
         return Math.sqrt(Math.pow(pXI - pXII, 2) + Math.pow(pYI - pYII, 2));
     }
