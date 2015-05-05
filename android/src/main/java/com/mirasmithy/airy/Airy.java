@@ -121,15 +121,15 @@ public class Airy implements View.OnTouchListener {
             Pointer mPointer = mPointers.get(0);
 
             if (mPointer.downInsideTimeLimit(TIME_LIMIT)) {
-                if (mPointer.tapped()) {
+                if (mPointer.getTapped()) {
                     return ONE_FINGER_TAP;
-                } else if (mPointer.swipedUp()) {
+                } else if (mPointer.getSwipedUp()) {
                     return ONE_FINGER_SWIPE_UP;
-                } else if (mPointer.swipedDown()) {
+                } else if (mPointer.getSwipedDown()) {
                     return ONE_FINGER_SWIPE_DOWN;
-                } else if (mPointer.swipedLeft()) {
+                } else if (mPointer.getSwipedLeft()) {
                     return ONE_FINGER_SWIPE_LEFT;
-                } else if (mPointer.swipedRight()) {
+                } else if (mPointer.getSwipedRight()) {
                     return ONE_FINGER_SWIPE_RIGHT;
                 } else {
                     return UNKNOWN_GESTURE;
@@ -144,28 +144,28 @@ public class Airy implements View.OnTouchListener {
             if (mPointerI.downInsideTimeLimit(TIME_LIMIT) &&
                     mPointerII.downInsideTimeLimit(TIME_LIMIT)) {
 
-                if (mPointerI.tapped() &&
-                        mPointerII.tapped()) {
+                if (mPointerI.getTapped() &&
+                        mPointerII.getTapped()) {
 
                     return TWO_FINGER_TAP;
 
-                } else if (mPointerI.swipedUp() &&
-                        mPointerII.swipedUp()) {
+                } else if (mPointerI.getSwipedUp() &&
+                        mPointerII.getSwipedUp()) {
 
                     return TWO_FINGER_SWIPE_UP;
 
-                } else if (mPointerI.swipedDown() &&
-                        mPointerII.swipedDown()) {
+                } else if (mPointerI.getSwipedDown() &&
+                        mPointerII.getSwipedDown()) {
 
                     return TWO_FINGER_SWIPE_DOWN;
 
-                } else if (mPointerI.swipedLeft() &&
-                        mPointerII.swipedLeft()) {
+                } else if (mPointerI.getSwipedLeft() &&
+                        mPointerII.getSwipedLeft()) {
 
                     return TWO_FINGER_SWIPE_LEFT;
 
-                } else if (mPointerI.swipedRight() &&
-                        mPointerII.swipedRight()) {
+                } else if (mPointerI.getSwipedRight() &&
+                        mPointerII.getSwipedRight()) {
 
                     return TWO_FINGER_SWIPE_RIGHT;
                 } else if (mPointerI.pinchedIn(mPointerII, mMovementLimitPx)) {
@@ -222,9 +222,7 @@ public class Airy implements View.OnTouchListener {
                     Pointer mPointer = mPointers.get(pIndex);
 
                     if (mPointer.getId() == mPointerId) {
-                        mPointer.setUpTime(mEventTime);
-                        mPointer.setUpX(mX);
-                        mPointer.setUpY(mY);
+                        mPointer.setUpInfo(mEventTime, mX, mY);
                     }
                 }
                 break;
@@ -233,9 +231,7 @@ public class Airy implements View.OnTouchListener {
                     Pointer mPointer = mPointers.get(pIndex);
 
                     if (mPointer.getId() == mPointerId) {
-                        mPointer.setUpTime(mEventTime);
-                        mPointer.setUpX(mX);
-                        mPointer.setUpY(mY);
+                        mPointer.setUpInfo(mEventTime, mX, mY);
                     }
                 }
 
