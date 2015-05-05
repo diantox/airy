@@ -38,6 +38,12 @@ public class Pointer {
     private float mUpXLowerLimit;
     private float mUpYLowerLimit;
 
+    private boolean mTapped;
+    private boolean mSwipedUp;
+    private boolean mSwipedDown;
+    private boolean mSwipedLeft;
+    private boolean mSwipedRight;
+
     /**
      * Creates a new Pointer.
      *
@@ -65,30 +71,38 @@ public class Pointer {
     }
 
     /**
-     * Sets the time (in milliseconds) when the Pointer went up.
+     * Sets the time (in milliseconds) and coordinates (in pixels) when and where
+     * the Pointer went up.
      *
      * @param pUpTime The time (in milliseconds) when the Pointer went up.
-     */
-    public void setUpTime(long pUpTime) {
-        mUpTime = pUpTime;
-    }
-
-    /**
-     * Sets the X coordinate (in pixels) where the Pointer went up.
-     *
      * @param pUpX The X coordinate (in pixels) where the Pointer went up.
-     */
-    public void setUpX(float pUpX) {
-        mUpX = pUpX;
-    }
-
-    /**
-     * Sets the Y coordinate (in pixels) where the Pointer went up.
-     *
      * @param pUpY The Y coordinate (in pixels) where the Pointer went up.
      */
-    public void setUpY(float pUpY) {
+    public void setUpInfo(long pUpTime, float pUpX, float pUpY) {
+        mUpTime = pUpTime;
+        mUpX = pUpX;
         mUpY = pUpY;
+
+        mTapped = mUpX < mUpXUpperLimit &&
+                mUpY < mUpYUpperLimit &&
+                mUpX > mUpXLowerLimit &&
+                mUpY > mUpYLowerLimit;
+
+        mSwipedUp = mUpX < mUpXUpperLimit &&
+                mUpX > mUpXLowerLimit &&
+                mUpY <= mUpYLowerLimit;
+
+        mSwipedDown = mUpX < mUpXUpperLimit &&
+                mUpY >= mUpYUpperLimit &&
+                mUpX > mUpXLowerLimit;
+
+        mSwipedLeft = mUpY < mUpYUpperLimit &&
+                mUpX <= mUpXLowerLimit &&
+                mUpY > mUpYLowerLimit;
+
+        mSwipedRight = mUpX >= mUpXUpperLimit &&
+                mUpY < mUpYUpperLimit &&
+                mUpY > mUpYLowerLimit;
     }
 
     /**
@@ -152,11 +166,8 @@ public class Pointer {
      *
      * @return Whether the Pointer tapped.
      */
-    public boolean tapped() {
-        return mUpX < mUpXUpperLimit &&
-                mUpY < mUpYUpperLimit &&
-                mUpX > mUpXLowerLimit &&
-                mUpY > mUpYLowerLimit;
+    public boolean getTapped() {
+        return mTapped;
     }
 
     /**
@@ -164,10 +175,8 @@ public class Pointer {
      *
      * @return Whether the Pointer swiped up.
      */
-    public boolean swipedUp() {
-        return mUpX < mUpXUpperLimit &&
-                mUpX > mUpXLowerLimit &&
-                mUpY <= mUpYLowerLimit;
+    public boolean getSwipedUp() {
+        return mSwipedUp;
     }
 
     /**
@@ -175,10 +184,8 @@ public class Pointer {
      *
      * @return Whether the Pointer swiped down.
      */
-    public boolean swipedDown() {
-        return mUpX < mUpXUpperLimit &&
-                mUpY >= mUpYUpperLimit &&
-                mUpX > mUpXLowerLimit;
+    public boolean getSwipedDown() {
+        return mSwipedDown;
     }
 
     /**
@@ -186,10 +193,8 @@ public class Pointer {
      *
      * @return Whether the Pointer swiped left.
      */
-    public boolean swipedLeft() {
-        return mUpY < mUpYUpperLimit &&
-                mUpX <= mUpXLowerLimit &&
-                mUpY > mUpYLowerLimit;
+    public boolean getSwipedLeft() {
+        return mSwipedLeft;
     }
 
     /**
@@ -197,10 +202,8 @@ public class Pointer {
      *
      * @return Whether the Pointer swiped right.
      */
-    public boolean swipedRight() {
-        return mUpX >= mUpXUpperLimit &&
-                mUpY < mUpYUpperLimit &&
-                mUpY > mUpYLowerLimit;
+    public boolean getSwipedRight() {
+        return mSwipedRight;
     }
 
     private double distanceFormula(float pXI, float pYI,
