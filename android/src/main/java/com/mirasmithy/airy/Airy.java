@@ -199,7 +199,6 @@ public class Airy implements View.OnTouchListener {
      * @param pMotionEvent The MotionEvent of a performed touch.
      * @return true
      */
-    @Override
     public boolean onTouch(View pView, MotionEvent pMotionEvent) {
         int mActionIndex = pMotionEvent.getActionIndex();
 
