@@ -1,5 +1,5 @@
 /**
- * Airy 2.0, a free software gesture library for the Web.
+ * Airy 2.0.1, a free software gesture library for the Web.
  * Copyright (C) 2015  Miras Absar
  *
  * This program is free software: you can redistribute it and/or modify
