@@ -38,16 +38,31 @@ function Pointer(pId,
     this.mUpYLowerLimit = this.mDownY - pMovementLimitDp;
 }
 
-Pointer.prototype.setUpTime = function(pUpTime) {
+Pointer.prototype.setUpInfo = function(pUpTime, pUpX, pUpY) {
     this.mUpTime = pUpTime;
-};
-
-Pointer.prototype.setUpX = function(pUpX) {
     this.mUpX = pUpX;
-};
-
-Pointer.prototype.setUpY = function(pUpY) {
     this.mUpY = pUpY;
+
+    this.mTapped = this.mUpX < this.mUpXUpperLimit &&
+            this.mUpY < this.mUpYUpperLimit &&
+            this.mUpX > this.mUpXLowerLimit &&
+            this.mUpY > this.mUpYLowerLimit;
+
+    this.mSwipedUp = this.mUpX < this.mUpXUpperLimit &&
+            this.mUpX > this.mUpXLowerLimit &&
+            this.mUpY <= this.mUpYLowerLimit;
+
+    this.mSwipedDown = this.mUpX < this.mUpXUpperLimit &&
+            this.mUpY >= this.mUpYUpperLimit &&
+            this.mUpX > this.mUpXLowerLimit;
+
+    this.mSwipedLeft = this.mUpY < this.mUpYUpperLimit &&
+            this.mUpX <= this.mUpXLowerLimit &&
+            this.mUpY > this.mUpYLowerLimit;
+
+    this.mSwipedRight = this.mUpX >= this.mUpXUpperLimit &&
+            this.mUpY < this.mUpYUpperLimit &&
+            this.mUpY > this.mUpYLowerLimit;
 };
 
 Pointer.prototype.getId = function() {
@@ -74,35 +89,24 @@ Pointer.prototype.downInsideTimeLimit = function(pTimeLimit) {
     return (this.mUpTime - this.mDownTime) <= pTimeLimit;
 };
 
-Pointer.prototype.tapped = function() {
-    return this.mUpX < this.mUpXUpperLimit &&
-            this.mUpY < this.mUpYUpperLimit &&
-            this.mUpX > this.mUpXLowerLimit &&
-            this.mUpY > this.mUpYLowerLimit;
+Pointer.prototype.getTapped = function() {
+    return this.mTapped;
 };
 
-Pointer.prototype.swipedUp = function() {
-    return this.mUpX < this.mUpXUpperLimit &&
-            this.mUpX > this.mUpXLowerLimit &&
-            this.mUpY <= this.mUpYLowerLimit;
+Pointer.prototype.getSwipedUp = function() {
+    return this.mSwipedUp;
 };
 
-Pointer.prototype.swipedDown = function() {
-    return this.mUpX < this.mUpXUpperLimit &&
-            this.mUpY >= this.mUpYUpperLimit &&
-            this.mUpX > this.mUpXLowerLimit;
+Pointer.prototype.getSwipedDown = function() {
+    return this.mSwipedDown;
 };
 
-Pointer.prototype.swipedLeft = function() {
-    return this.mUpY < this.mUpYUpperLimit &&
-            this.mUpX <= this.mUpXLowerLimit &&
-            this.mUpY > this.mUpYLowerLimit;
+Pointer.prototype.getSwipedLeft = function() {
+    return this.mSwipedLeft;
 };
 
-Pointer.prototype.swipedRight = function() {
-    return this.mUpX >= this.mUpXUpperLimit &&
-            this.mUpY < this.mUpYUpperLimit &&
-            this.mUpY > this.mUpYLowerLimit;
+Pointer.prototype.getSwipedRight = function() {
+    return this.mSwipedRight;
 };
 
 Pointer.prototype.distanceFormula = function(pXI, pYI,
