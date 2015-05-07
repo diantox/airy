@@ -180,15 +180,15 @@ Airy.prototype.getGestureId = function() {
         var mPointer = this.mPointers[0];
 
         if (mPointer.downInsideTimeLimit(this.TIME_LIMIT)) {
-            if (mPointer.tapped()) {
+            if (mPointer.getTapped()) {
                 return this.ONE_FINGER_TAP;
-            } else if (mPointer.swipedUp()) {
+            } else if (mPointer.getSwipedUp()) {
                 return this.ONE_FINGER_SWIPE_UP;
-            } else if (mPointer.swipedDown()) {
+            } else if (mPointer.getSwipedDown()) {
                 return this.ONE_FINGER_SWIPE_DOWN;
-            } else if (mPointer.swipedLeft()) {
+            } else if (mPointer.getSwipedLeft()) {
                 return this.ONE_FINGER_SWIPE_LEFT;
-            } else if (mPointer.swipedRight()) {
+            } else if (mPointer.getSwipedRight()) {
                 return this.ONE_FINGER_SWIPE_RIGHT;
             } else {
                 return this.UNKNOWN_GESTURE;
@@ -203,28 +203,28 @@ Airy.prototype.getGestureId = function() {
         if (mPointerI.downInsideTimeLimit(this.TIME_LIMIT) &&
                 mPointerII.downInsideTimeLimit(this.TIME_LIMIT)) {
 
-            if (mPointerI.tapped() &&
-                    mPointerII.tapped()) {
+            if (mPointerI.getTapped() &&
+                    mPointerII.getTapped()) {
 
                 return this.TWO_FINGER_TAP;
 
-            } else if (mPointerI.swipedUp() &&
-                    mPointerII.swipedUp()) {
+            } else if (mPointerI.getSwipedUp() &&
+                    mPointerII.getSwipedUp()) {
 
                 return this.TWO_FINGER_SWIPE_UP;
 
-            } else if (mPointerI.swipedDown() &&
-                    mPointerII.swipedDown()) {
+            } else if (mPointerI.getSwipedDown() &&
+                    mPointerII.getSwipedDown()) {
 
                 return this.TWO_FINGER_SWIPE_DOWN;
 
-            } else if (mPointerI.swipedLeft() &&
-                    mPointerII.swipedLeft()) {
+            } else if (mPointerI.getSwipedLeft() &&
+                    mPointerII.getSwipedLeft()) {
 
                 return this.TWO_FINGER_SWIPE_LEFT;
 
-            } else if (mPointerI.swipedRight() &&
-                    mPointerII.swipedRight()) {
+            } else if (mPointerI.getSwipedRight() &&
+                    mPointerII.getSwipedRight()) {
 
                 return this.TWO_FINGER_SWIPE_RIGHT;
             } else if (mPointerI.pinchedIn(mPointerII, this.MOVEMENT_LIMIT_DP)) {
@@ -269,9 +269,7 @@ Airy.prototype.onTouch = function(pTouchEvent) {
                 var mPointerI = this.mPointers[pIndexI];
 
                 if (mPointerI.getId() == mIdentifier) {
-                    mPointerI.setUpTime(mTime);
-                    mPointerI.setUpX(mScreenX);
-                    mPointerI.setUpY(mScreenY);
+                    mPointerI.setUpInfo(mTime, mScreenX, mScreenY);
                 }
             }
             break;
@@ -280,9 +278,7 @@ Airy.prototype.onTouch = function(pTouchEvent) {
                 var mPointerII = this.mPointers[pIndexII];
 
                 if (mPointerII.getId() == mIdentifier) {
-                    mPointerII.setUpTime(mTime);
-                    mPointerII.setUpX(mScreenX);
-                    mPointerII.setUpY(mScreenY);
+                    mPointerII.setUpInfo(mTime, mScreenX, mScreenY);
                 }
             }
 
